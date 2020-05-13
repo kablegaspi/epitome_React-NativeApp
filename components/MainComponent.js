@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
-import Directory from './DirectoryComponent';
+import Proposal from './ProposalsComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import { fetchCampsites, fetchComments, fetchPromotions,
     fetchPartners } from '../redux/ActionCreators';
 
+
+    
 const mapDispatchToProps = {
     fetchCampsites,
     fetchComments,
@@ -23,8 +25,8 @@ const mapDispatchToProps = {
 
 const DirectoryNavigator = createStackNavigator(
     {
-        Directory: { 
-            screen: Directory,
+        Proposal: { 
+            screen: Proposal,
             navigationOptions: ({navigation}) => ({
                 headerLeft: <Icon
                     name='list'
@@ -37,14 +39,15 @@ const DirectoryNavigator = createStackNavigator(
         CampsiteInfo: { screen: CampsiteInfo }
     },
     {
-        initialRouteName: 'Directory',
+        initialRouteName: 'Proposal',
         navigationOptions: {
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#FFCA26'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000000',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#000000',
+                fontWeight: 'bold'
             }
         }
     }
@@ -57,11 +60,12 @@ const HomeNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#FFCA26'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000000',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#000000',
+                fontWeight: 'bold'
             },
             headerLeft: <Icon
                 name='home'
@@ -81,11 +85,12 @@ const AboutNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#FFCA26'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000000',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#000000',
+                fontWeight: 'bold'
             },
             headerLeft: <Icon
                 name='info-circle'
@@ -104,11 +109,12 @@ const ContactNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#FFCA26'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000000',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#000000',
+                fontWeight: 'bold'
             },
             headerLeft: <Icon
                 name='address-card'
@@ -127,11 +133,12 @@ const ReservationNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#FFCA26'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000000',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#000000',
+                fontWeight: 'bold'
             },
             headerLeft: <Icon
                 name='tree'
@@ -150,11 +157,12 @@ const FavoritesNavigator = createStackNavigator(
     {
         navigationOptions: ({navigation}) => ({
             headerStyle: {
-                backgroundColor: '#5637DD'
+                backgroundColor: '#FFCA26'
             },
-            headerTintColor: '#fff',
+            headerTintColor: '#000000',
             headerTitleStyle: {
-                color: '#fff'
+                color: '#000000',
+                fontWeight: 'bold'
             },
             headerLeft: <Icon
                 name='heart'
@@ -174,10 +182,11 @@ const CustomDrawerContentComponent = props => (
             forceInset={{top: 'always', horizontal: 'never'}}>
             <View style={styles.drawerHeader}>
                 <View style={{flex: 1}}>
-                    <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+                    <Image source={require('./photos/logo_inverted.png')} style={styles.drawerImage} />
                 </View>
                 <View style={{flex: 2}}>
-                    <Text style={styles.drawerHeaderText}>NuCamp</Text>
+                    <Text style={styles.drawerHeaderText}>Epitome</Text>
+                    <Text style={styles.drawerHeaderText}>Designs</Text>
                 </View>
             </View>
             <DrawerItems {...props} />
@@ -201,9 +210,10 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-        Directory: {
+        Proposal: {
             screen: DirectoryNavigator,
             navigationOptions: {
+                drawerLabel: 'Proposals',
                 drawerIcon: ({tintColor}) => (
                     <Icon
                         name='list'
@@ -218,7 +228,7 @@ const MainNavigator = createDrawerNavigator(
     Reservation: {
         screen: ReservationNavigator,
         navigationOptions: {
-            drawerLabel: 'Reserve Campsite',
+            drawerLabel: 'Schedule a Huddle',
             drawerIcon: ({tintColor}) => (
                 <Icon
                     name='tree'
@@ -275,7 +285,7 @@ const MainNavigator = createDrawerNavigator(
         }
     },
     {
-        drawerBackgroundColor: '#CEC8FF',
+        drawerBackgroundColor: '#FFFFFF',
         contentComponent: CustomDrawerContentComponent
     }
 );
@@ -293,7 +303,8 @@ class Main extends Component {
         return (
             <View style={{
                 flex: 1,
-                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
+                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight,
+                
             }}>
                 <MainNavigator />
             </View>
@@ -305,7 +316,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: '#5637DD',
+        backgroundColor: '#000000',
         height: 140,
         alignItems: 'center',
         justifyContent: 'center',
@@ -313,8 +324,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     drawerHeaderText: {
-        color: '#fff',
-        fontSize: 24,
+        color: '#FFCA26',
+        fontSize: 26,
         fontWeight: 'bold'
     },
     drawerImage: {
@@ -324,7 +335,7 @@ const styles = StyleSheet.create({
     },
     stackIcon: {
         marginLeft: 10,
-        color: '#fff',
+        color: '#000000',
         fontSize: 24
     }
 });

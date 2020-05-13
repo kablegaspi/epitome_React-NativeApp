@@ -2,10 +2,10 @@ export const CAMPSITES = [
     {
         id: 0,
         name: "React Lake Campground",
-        image: "/assets/images/react-lake.jpg",
+        image: "/assets/photos/minimalist.jpg",
         elevation: 1233,
         featured: false,
-        description: "Nestled in the foothills of the Chrome Mountains, this campground on the shores of the pristine React Lake is a favorite for fly fishers."
+        description: "ccNestled in the foothills of the Chrome Mountains, this campground on the shores of the pristine React Lake is a favorite for fly fishers."
     },
     {
         id: 1,
@@ -20,15 +20,15 @@ export const CAMPSITES = [
         name:"Breadcrumb Trail Campground",
         image: "/assets/images/breadcrumb-trail.jpg",
         elevation: 2901,
-        featured: false,
+        featured: true,
         description: "Let NuCamp be your guide to this off-the-beaten-path, hike-in-only campground."
     },
     {
         id: 3,
         name:"Redux Woods Campground",
-        image: "/assets/images/redux-woods.jpg",
+        image: "/assets/photos/minimalis.jpg",
         elevation: 42,
-        featured: true,
+        featured: false,
         description: "You'll never want to leave this hidden gem, deep within the lush Redux Woods."
     }
 ];
