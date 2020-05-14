@@ -5,21 +5,21 @@ import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
 import Favorites from './FavoritesComponent';
-import CampsiteInfo from './CampsiteInfoComponent';
+import CampsiteInfo from './ProposalInfoComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image  } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
-import { fetchCampsites, fetchComments, fetchPromotions,
+import { fetchProposals, fetchComments, fetchIdeas,
     fetchPartners } from '../redux/ActionCreators';
 
 
     
 const mapDispatchToProps = {
-    fetchCampsites,
+    fetchProposals,
     fetchComments,
-    fetchPromotions,
+    fetchIdeas,
     fetchPartners
 };
 
@@ -141,7 +141,7 @@ const ReservationNavigator = createStackNavigator(
                 fontWeight: 'bold'
             },
             headerLeft: <Icon
-                name='tree'
+                name='calendar'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -231,7 +231,7 @@ const MainNavigator = createDrawerNavigator(
             drawerLabel: 'Schedule a Huddle',
             drawerIcon: ({tintColor}) => (
                 <Icon
-                    name='tree'
+                    name='calendar'
                     type='font-awesome'
                     size={24}
                     color={tintColor}
@@ -293,9 +293,9 @@ const MainNavigator = createDrawerNavigator(
 class Main extends Component {
 
     componentDidMount() {
-        this.props.fetchCampsites();
+        this.props.fetchProposals();
         this.props.fetchComments();
-        this.props.fetchPromotions();
+        this.props.fetchIdeas();
         this.props.fetchPartners();
     }
 

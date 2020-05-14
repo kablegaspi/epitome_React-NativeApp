@@ -10,7 +10,7 @@ import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
-        campsites: state.campsites,
+        proposals: state.proposals,
         favorites: state.favorites
     };
 };
@@ -67,19 +67,19 @@ class Favorites extends Component {
             );
         };
 
-        if (this.props.campsites.isLoading) {
+        if (this.props.proposals.isLoading) {
             return <Loading />;
         }
-        if (this.props.campsites.errMess) {
+        if (this.props.proposals.errMess) {
             return (
                 <View>
-                    <Text>{this.props.campsites.errMess}</Text>
+                    <Text>{this.props.proposals.errMess}</Text>
                 </View>
             );
         }
         return (
             <FlatList
-                data={this.props.campsites.campsites.filter(
+                data={this.props.proposals.proposals.filter(
                     campsite => this.props.favorites.includes(campsite.id)
                 )}
                 renderItem={renderFavoriteItem}

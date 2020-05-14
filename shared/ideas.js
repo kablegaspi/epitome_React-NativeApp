@@ -1,4 +1,4 @@
-export const PROMOTIONS = [
+export const IDEAS = [
     {
         id: 0,
         name: "Mountainaaa Adventure",

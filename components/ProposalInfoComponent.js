@@ -11,20 +11,20 @@ import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
-      campsites: state.campsites,
+      proposals: state.proposals,
       comments: state.comments,
       favorites: state.favorites
     };
 };
 
 const mapDispatchToProps = {
-    postFavorite: campsiteId => (postFavorite(campsiteId)),
-    postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
+    postFavorite: proposalId => (postFavorite(proposalId)),
+    postComment: (proposalId, rating, author, text) => (postComment(proposalId, rating, author, text))
 };
 
-function RenderCampsite(props) {
+function RenderProposal(props) {
 
-    const {campsite} = props;
+    const {proposal} = props;
 
     const view = React.createRef();
 
@@ -42,7 +42,7 @@ function RenderCampsite(props) {
             if (recognizeDrag(gestureState)) {
                 Alert.alert(
                     'Add Favorite',
-                    'Are you sure you wish to add ' + campsite.name + ' to favorites?',
+                    'Are you sure you wish to add ' + proposal.name + ' to favorites?',
                     [
                         {
                             text: 'Cancel',
@@ -67,7 +67,7 @@ function RenderCampsite(props) {
         }
     });
 
-    if (campsite) {
+    if (proposal) {
         return (
             <Animatable.View
                 animation='fadeInDown'
@@ -76,10 +76,10 @@ function RenderCampsite(props) {
                 ref={view}
                 {...panResponder.panHandlers}>
                 <Card
-                featuredTitle={campsite.name}
-                image={{uri: baseUrl + campsite.image}}>
+                featuredTitle={proposal.name}
+                image={{uri: baseUrl + proposal.image}}>
                 <Text style={{margin: 10}}>
-                    {campsite.description}
+                    {proposal.description}
                 </Text>
                 <View style={styles.cardRow}>
                 <Icon
@@ -138,7 +138,7 @@ function RenderComments({comments}) {
     );
 }
 
-class CampsiteInfo extends Component {
+class ProposalInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -156,8 +156,8 @@ class CampsiteInfo extends Component {
         this.setState({showModal: !this.state.showModal});
     }
 
-    handleComment(campsiteId){
-        this.props.postComment(campsiteId, this.state.rating, this.state.author, this.state.text)
+    handleComment(proposalId){
+        this.props.postComment(proposalId, this.state.rating, this.state.author, this.state.text)
         this.toggleModal();
         
     }
@@ -170,24 +170,24 @@ class CampsiteInfo extends Component {
         });
     }
     
-    markFavorite(campsiteId) {
-        this.props.postFavorite(campsiteId);
+    markFavorite(proposalId) {
+        this.props.postFavorite(proposalId);
     }
 
     static navigationOptions = {
-        title: 'Campsite Information'
+        title: 'Proposal Information'
     };
 
     render() {
-        const campsiteId = this.props.navigation.getParam('campsiteId');
-        const campsite = this.props.campsites.campsites.filter(campsite => campsite.id === campsiteId)[0];
-        const comments = this.props.comments.comments.filter(comment => comment.campsiteId === campsiteId);
+        const proposalId = this.props.navigation.getParam('proposalId');
+        const proposal = this.props.proposals.proposals.filter(proposal => proposal.id === proposalId)[0];
+        const comments = this.props.comments.comments.filter(comment => comment.proposalId === proposalId);
         
         return (
             <ScrollView>
-                 <RenderCampsite campsite={campsite}
-                    favorite={this.props.favorites.includes(campsiteId)}
-                    markFavorite={() => this.markFavorite(campsiteId)}
+                 <RenderProposal proposal={proposal}
+                    favorite={this.props.favorites.includes(proposalId)}
+                    markFavorite={() => this.markFavorite(proposalId)}
                     onShowModal={() => this.toggleModal()}
                 />
                 <RenderComments comments={comments} />
@@ -219,7 +219,7 @@ class CampsiteInfo extends Component {
                     <View  style={{margin: 10}}>
                         <Button
                             onPress={() => {
-                                this.handleComment(campsiteId);
+                                this.handleComment(proposalId);
                                 this.resetForm();
                             }}
                             color='#5637DD'
@@ -261,4 +261,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CampsiteInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(ProposalInfo);

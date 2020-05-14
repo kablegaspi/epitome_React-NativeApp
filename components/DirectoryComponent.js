@@ -12,7 +12,7 @@ const mapStateToProps = state => {
     };
 };
 
-class Proposal extends Component {
+class Directory extends Component {
 
     static navigationOptions = {
         title: 'Proposals'
@@ -27,7 +27,8 @@ class Proposal extends Component {
                         title={item.name}
                         caption={item.description}
                         featured
-                        onPress={() => navigate('ProposalsInfo', { proposalsId: item.id })}
+                       
+                        onPress={() => navigate('ProposalInfo', { proposalId: item.id })}
                         imageSrc={{uri: baseUrl + item.image}}
                         />
                 </Animatable.View>
@@ -54,4 +55,6 @@ class Proposal extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Proposal);
+
+
+export default connect(mapStateToProps)(Directory);

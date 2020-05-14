@@ -31,11 +31,11 @@ export const addComments = (comments) => ({
     payload: comments
 });
 
-export const fetchCampsites = () => dispatch => {
+export const fetchProposals = () => dispatch => {
 
-    dispatch(campsitesLoading());
+    dispatch(proposalsLoading());
 
-    return fetch(baseUrl + 'campsites')
+    return fetch(baseUrl + 'proposals')
         .then(response => {
                 if (response.ok) {
                 return response;
@@ -50,29 +50,29 @@ export const fetchCampsites = () => dispatch => {
                 throw errMess;
             })
         .then(response => response.json())
-        .then(campsites => dispatch(addCampsites(campsites)))
-        .catch(error => dispatch(campsitesFailed(error.message)));
+        .then(proposals => dispatch(addProposals(proposals)))
+        .catch(error => dispatch(proposalsFailed(error.message)));
 };
 
-export const campsitesLoading = () => ({
-    type: ActionTypes.CAMPSITES_LOADING
+export const proposalsLoading = () => ({
+    type: ActionTypes.PROPOSALS_LOADING
 });
 
-export const campsitesFailed = errMess => ({
-    type: ActionTypes.CAMPSITES_FAILED,
+export const proposalsFailed = errMess => ({
+    type: ActionTypes.PROPOSALS_FAILED,
     payload: errMess
 });
 
-export const addCampsites = campsites => ({
-    type: ActionTypes.ADD_CAMPSITES,
-    payload: campsites
+export const addProposals = proposals => ({
+    type: ActionTypes.ADD_PROPOSALS,
+    payload: proposals
 });
 
-export const fetchPromotions = () => dispatch => {
+export const fetchIdeas = () => dispatch => {
     
-    dispatch(promotionsLoading());
+    dispatch(ideasLoading());
 
-    return fetch(baseUrl + 'promotions')
+    return fetch(baseUrl + 'ideas')
         .then(response => {
                 if (response.ok) {
                     return response;
@@ -87,22 +87,22 @@ export const fetchPromotions = () => dispatch => {
                 throw errMess;
             })
         .then(response => response.json())
-        .then(promotions => dispatch(addPromotions(promotions)))
-        .catch(error => dispatch(promotionsFailed(error.message)));
+        .then(ideas => dispatch(addIdeas(ideas)))
+        .catch(error => dispatch(ideasFailed(error.message)));
 };
 
-export const promotionsLoading = () => ({
-    type: ActionTypes.PROMOTIONS_LOADING
+export const ideasLoading = () => ({
+    type: ActionTypes.IDEAS_LOADING
 });
 
-export const promotionsFailed = errMess => ({
-    type: ActionTypes.PROMOTIONS_FAILED,
+export const ideasFailed = errMess => ({
+    type: ActionTypes.IDEAS_FAILED,
     payload: errMess
 });
 
-export const addPromotions = promotions => ({
-    type: ActionTypes.ADD_PROMOTIONS,
-    payload: promotions
+export const addIdeas = ideas => ({
+    type: ActionTypes.ADD_IDEAS,
+    payload: ideas
 });
 
 export const fetchPartners = () => dispatch => {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import {Input} from 'react-native-elements';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as Animatable from 'react-native-animatable';
 
 class Reservation extends Component {
@@ -9,20 +11,19 @@ class Reservation extends Component {
         super(props);
 
         this.state = {
-            campers: 1,
-            hikeIn: false,
+                  
             date: '',
         };
     }
 
     static navigationOptions = {
-        title: 'Reserve Campsite'
+        title: 'Schedule a Huddle'
     }
     
     handleReservation(){
         Alert.alert(
-            'Begin Search?',
-            'Number of Campers: ' + this.state.campers + '\nHike-In?: '+ this.state.hikeIn + '\nDate: '+ this.state.date,
+            'You are all set!   ',
+            'See you on: '+ this.state.date,
             [
                 { 
                     text: 'Cancel', 
@@ -40,29 +41,11 @@ class Reservation extends Component {
     render() {
         return (
             <Animatable.View animation='zoomIn' duration={2000} delay={1000}>
+                
                 <View style={styles.formRow}>
-                    <Text style={styles.formLabel}>Number of Campers</Text>
-                    <Picker
-                        style={styles.formItem}
-                        selectedValue={this.state.campers}
-                        onValueChange={itemValue => this.setState({campers: itemValue})}>
-                        <Picker.Item label='1' value='1' />
-                        <Picker.Item label='2' value='2' />
-                        <Picker.Item label='3' value='3' />
-                        <Picker.Item label='4' value='4' />
-                        <Picker.Item label='5' value='5' />
-                        <Picker.Item label='6' value='6' />
-                    </Picker>
+                    <Text style={styles.formLabel}>{'\n'}{'\n'}Pick the best date that works for you!{'\n'}</Text>
                 </View>
-                <View style={styles.formRow}>
-                    <Text style={styles.formLabel}>Hike-In?</Text>
-                    <Switch
-                        style={styles.formItem}
-                        value={this.state.hikeIn}
-                        trackColor={{true: '#5637DD', false: null}}
-                        onValueChange={value => this.setState({hikeIn: value})}>
-                    </Switch>
-                </View>
+                <View style={styles.formRow}></View>
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Date</Text>
                     <DatePicker
@@ -87,14 +70,16 @@ class Reservation extends Component {
                         }}
                         onDateChange={date => {this.setState({date: date})}}
                     />
+                    
                 </View>
+                <View style={styles.formRow}></View>
                 <View style={styles.formRow}>
                     <Button
                         onPress={() => this.handleReservation()
                     }
-                        title='Search'
-                        color='#5637DD'
-                        accessibilityLabel='Tap me to search for available campsites to reserve'
+                        title='Set'
+                        color='#000000'
+                        accessibilityLabel='Tap me to schedule a meeting with your designer'
                     />
                 </View>
                            
