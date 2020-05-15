@@ -1,14 +1,14 @@
 import * as ActionTypes from './ActionTypes';
 
-export const favorites = (state = [], action) => {
+export const finals = (state = [], action) => {
     switch (action.type) {
-        case ActionTypes.ADD_FAVORITE:
+        case ActionTypes.ADD_FINAL:
             if (state.includes(action.payload)) {
                 return state;
             }
             return state.concat(action.payload);
-        case ActionTypes.DELETE_FAVORITE:
-                return state.filter(favorite => favorite !== action.payload);
+        case ActionTypes.DELETE_FINAL:
+                return state.filter(final => final !== action.payload);
         default:
             return state;
     }

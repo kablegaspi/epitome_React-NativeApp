@@ -4,8 +4,8 @@ import Proposal from './ProposalsComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
-import Favorites from './FavoritesComponent';
-import CampsiteInfo from './ProposalInfoComponent';
+import Finals from './FinalsComponent';
+import ProposalInfo from './ProposalInfoComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image  } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
@@ -36,7 +36,7 @@ const DirectoryNavigator = createStackNavigator(
                 />
             })
         },
-        CampsiteInfo: { screen: CampsiteInfo }
+        ProposalInfo: { screen: ProposalInfo }
     },
     {
         initialRouteName: 'Proposal',
@@ -150,9 +150,9 @@ const ReservationNavigator = createStackNavigator(
     }
 );
 
-const FavoritesNavigator = createStackNavigator(
+const FinalsNavigator = createStackNavigator(
     {
-        Favorites: { screen: Favorites }
+        Finals: { screen: Finals }
     },
     {
         navigationOptions: ({navigation}) => ({
@@ -165,7 +165,7 @@ const FavoritesNavigator = createStackNavigator(
                 fontWeight: 'bold'
             },
             headerLeft: <Icon
-                name='heart'
+                name='check-circle'
                 type='font-awesome'
                 iconStyle={styles.stackIcon}
                 onPress={() => navigation.toggleDrawer()}
@@ -240,13 +240,13 @@ const MainNavigator = createDrawerNavigator(
         }
     },
 
-    Favorites: {
-        screen: FavoritesNavigator,
+    Finals: {
+        screen: FinalsNavigator,
         navigationOptions: {
-            drawerLabel: 'My Favorites',
+            drawerLabel: 'Approved Designs',
             drawerIcon: ({tintColor}) => (
                 <Icon
-                    name='heart'
+                    name='check-circle'
                     type='font-awesome'
                     size={24}
                     color={tintColor}

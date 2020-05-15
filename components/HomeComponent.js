@@ -28,7 +28,7 @@ function RenderItem(props) {
     if (item) {
         return (
             <Card 
-                featuredTitle="Featured Partner"
+                featuredTitle={item.title}
                 image={{uri: baseUrl + item.image}}>
                 <Text
                     style={{margin: 10, fontSize: 20}}>

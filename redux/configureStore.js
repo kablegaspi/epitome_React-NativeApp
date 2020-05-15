@@ -5,7 +5,7 @@ import { proposals } from './proposals';
 import { comments } from './comments';
 import { ideas } from './ideas';
 import { partners } from './partners';
-import { favorites } from './favorites';
+import { finals } from './finals';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 
@@ -22,7 +22,7 @@ export const ConfigureStore = () => {
             comments,
             partners,
             ideas,
-            favorites
+            finals
         }),
         applyMiddleware(thunk, logger)
     );

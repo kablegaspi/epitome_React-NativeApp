@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, FlatList,
-    Modal, Button, StyleSheet,
-    Alert, PanResponder } from 'react-native';
+    Modal, StyleSheet,
+     Image, TouchableOpacity } from 'react-native';
 import { Card, Icon, Rating, Input} from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import { postFavorite } from '../redux/ActionCreators';
+import { postFinal } from '../redux/ActionCreators';
 import { postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 
@@ -13,14 +13,81 @@ const mapStateToProps = state => {
     return {
       proposals: state.proposals,
       comments: state.comments,
-      favorites: state.favorites
+      finals: state.finals
     };
 };
 
 const mapDispatchToProps = {
-    postFavorite: proposalId => (postFavorite(proposalId)),
+    postFinal: proposalId => (postFinal(proposalId)),
     postComment: (proposalId, rating, author, text) => (postComment(proposalId, rating, author, text))
 };
+
+function RenderRequirements() {
+        const requirements = [
+            {
+                startDate: '  04/25/2020',
+                style: '  Mid century modern',
+                targetDate: '  05/25/2020',
+                budget: '  $5000-$7000'
+            }
+           ];
+          
+    
+            return (
+                <View>
+                <Card title="REQUIREMENT(S)">
+                    {
+                    requirements.map((u, i) => {
+                    return (
+                        <View key={i} style={{tintColor: "#000000", 
+                        flexDirection: 'row', height: 180, width: 150, flexWrap: 'wrap'}}>
+                        <Text style={{fontSize: 15,
+                            fontWeight: 'bold', textAlign: 'left', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start'}}> 
+                               Start Date:  
+                        </Text>
+                        <Text style={{fontSize: 15,
+                            fontStyle: 'italic', textAlign: 'left'}}> 
+                            {u.startDate}</Text>
+                            <Text style={{fontSize: 15,
+                            fontWeight: 'bold', textAlign: 'left'}}> 
+                               Theme/Style:  
+                        </Text>
+                        <Text style={{fontSize: 15,
+                            fontStyle: 'italic', textAlign: 'left'}}> 
+                            {u.style}</Text>
+                            <Text style={{fontSize: 15,
+                            fontWeight: 'bold', textAlign: 'left'}}> 
+                              Target Date:  
+                        </Text>  
+                       <Text style={{fontSize: 15,
+                            fontStyle: 'italic', textAlign: 'left'}}> 
+                            {u.targetDate}</Text>
+                        <Text style={{fontSize: 15,
+                            fontWeight: 'bold', alignItems: 'center',
+                            justifyContent: 'flex-start'}}> 
+                                Budget in total:</Text> 
+                                <Text style={{fontSize: 15,
+                            fontStyle: 'italic'}}> 
+                            {u.budget}</Text>
+                            <Text style={{fontSize: 15,
+                            fontWeight: 'bold',color: 'red', alignItems: 'center',
+                            justifyContent: 'flex-start'}}> 
+                                REVISION #:</Text> 
+                                <Text style={{fontSize: 15, color: 'red',
+                            fontStyle: 'italic'}}> 
+                            7</Text>
+                            
+                        </View>
+                        
+                    );
+                    })
+                }
+                </Card>
+            </View>
+            );
+    
+}
+
 
 function RenderProposal(props) {
 
@@ -28,68 +95,42 @@ function RenderProposal(props) {
 
     const view = React.createRef();
 
-    const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
-    const recognizeComment = ({dx}) => (dx > 200) ? true : false;
-
-    const panResponder = PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
-        onPanResponderGrant: () => {
-            view.current.rubberBand(1000)
-            .then(endState => console.log(endState.finished ? 'finished' : 'canceled'));
-        },
-        onPanResponderEnd: (e, gestureState) => {
-            console.log('pan responder end', gestureState);
-            if (recognizeDrag(gestureState)) {
-                Alert.alert(
-                    'Add Favorite',
-                    'Are you sure you wish to add ' + proposal.name + ' to favorites?',
-                    [
-                        {
-                            text: 'Cancel',
-                            style: 'cancel',
-                            onPress: () => console.log('Cancel Pressed')
-                        },
-                        {
-                            text: 'OK',
-                            onPress: () => props.favorite ?
-                                console.log('Already set as a favorite') : props.markFavorite()
-                        }
-                    ],
-                    { cancelable: false }
-                );
-            }
-            else if (recognizeComment(gestureState)) {
-                props.onShowModal();
-            }
-
-        
-            return true;
-        }
-    });
-
-    if (proposal) {
+  if (proposal) {
         return (
             <Animatable.View
+            
                 animation='fadeInDown'
                 duration={2000}
                 delay={1000}
-                ref={view}
-                {...panResponder.panHandlers}>
-                <Card
-                featuredTitle={proposal.name}
-                image={{uri: baseUrl + proposal.image}}>
+                ref={view}>
+                <Card title={proposal.name}>
+                     <View style={styles.cardRow}>
+                     <Image
+                            style={{
+                               resizeMode: "contain",
+                                height: 280,
+                                width: 380,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                               
+                              }}
+                            resizeMode="cover"
+                            source={{uri: baseUrl + proposal.image}}
+                        />
+                </View>
+
                 <Text style={{margin: 10}}>
                     {proposal.description}
                 </Text>
                 <View style={styles.cardRow}>
                 <Icon
-                    name={props.favorite ? 'heart' : 'heart-o'}
+                    name={props.final ? 'check-circle' : 'check'}
                     type='font-awesome'
                     color='#f50'
                     raised
                     reverse
-                    onPress={() => props.favorite ? 
-                        console.log('Already set as a favorite') : props.markFavorite()}
+                    onPress={() => props.final ? 
+                        console.log('Design Already Approved') : props.markFinal()}
                 />
                 <Icon style={styles.cardItem}
                     name='pencil'
@@ -102,6 +143,7 @@ function RenderProposal(props) {
                     
                 />
                 </View>
+                
                 </Card>
             </Animatable.View>
         );
@@ -113,9 +155,11 @@ function RenderComments({comments}) {
 
     const renderCommentItem = ({item}) => {
         return (
+            
             <View style={{margin: 10}}>
                 <Text style={{fontSize: 14}}>{item.text}</Text>
                 <Rating readonly
+                 type='heart'
                     startingValue={item.rating}
                     imageSize={10}
                     style={{alignItems: 'flex-start', paddingVertical: 5}}
@@ -144,7 +188,7 @@ class ProposalInfo extends Component {
         this.state = {
             showModal: false,
             rating: 5,
-            author: '',
+            author: 'John Waters',
             text: ''
         };
     }
@@ -170,8 +214,8 @@ class ProposalInfo extends Component {
         });
     }
     
-    markFavorite(proposalId) {
-        this.props.postFavorite(proposalId);
+    markFinal(proposalId) {
+        this.props.postFinal(proposalId);
     }
 
     static navigationOptions = {
@@ -185,11 +229,13 @@ class ProposalInfo extends Component {
         
         return (
             <ScrollView>
+                
                  <RenderProposal proposal={proposal}
-                    favorite={this.props.favorites.includes(proposalId)}
-                    markFavorite={() => this.markFavorite(proposalId)}
+                    final={this.props.finals.includes(proposalId)}
+                    markFinal={() => this.markFinal(proposalId)}
                     onShowModal={() => this.toggleModal()}
                 />
+                <RenderRequirements />
                 <RenderComments comments={comments} />
                 <Modal
                     animationType={'slide'}
@@ -197,44 +243,44 @@ class ProposalInfo extends Component {
                     visible={this.state.showModal}
                     onRequestClose={() => this.toggleModal()}>
                     <View style={styles.modal}>
+                        <Text style={styles.text}>Did we nail it?</Text>
                     <Rating
                         showRating 
                         imageSize={40}
+                        type='heart'
                         startingValue={this.state.rating}
                         style={{paddingVertical: 10}}
                         onFinishRating={(rating)=>this.setState({rating: rating})} 
                     />
+                    
                     <Input
-                        placeholder="Author"
-                        leftIcon={{ type: 'font-awesome', name: 'user-o' }}
-                        leftIconContainerStyle={{paddingRight: 10}}
-                        onChangeText={value => this.setState({ author: value })}
-                    />
-                    <Input
-                        placeholder="Comment"
+                        placeholder="Feedback"
                         leftIcon={{ type: 'font-awesome', name: 'comment-o' }}
-                        leftIconContainerStyle={{paddingRight: 10}}
+                        leftIconContainerStyle={{paddingRight: 20}}
                         onChangeText={value => this.setState({ text: value })}
                     />
                     <View  style={{margin: 10}}>
-                        <Button
-                            onPress={() => {
+                    <TouchableOpacity onPress={() => {
                                 this.handleComment(proposalId);
                                 this.resetForm();
-                            }}
-                            color='#5637DD'
-                            title='Submit'
-                        />
+                            }}>
+                    <View style = {{backgroundColor: '#FFCA26', alignItems: 'center', 
+                    justifyContent: 'center', borderRadius: 10, height: 30}}>
+                        <Text style = {{color: 'black',fontSize: 15}}>SEND</Text>
+                    </View>
+                    </TouchableOpacity>
+
                     </View>
                     <View  style={{margin: 10}}>
-                        <Button
-                            onPress={() => {
-                                this.toggleModal();
-                                this.resetForm();
-                            }}
-                            color='#808080'
-                            title='Cancel'
-                        />
+                        <TouchableOpacity onPress={() => {
+                                 this.toggleModal();
+                                 this.resetForm();
+                            }}>
+                            <View style = {{backgroundColor: '#000000', alignItems: 'center', 
+                            justifyContent: 'center', borderRadius: 10, height: 30}}>
+                                <Text style = {{color: 'white',fontSize: 15}}>CANCEL</Text>
+                            </View>
+                    </TouchableOpacity>
                     </View>
                 </View>
                 </Modal>
@@ -259,6 +305,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         margin: 20
     },
+    text:
+    {
+        textAlign: 'center',
+        color: '#000000',
+        fontSize: 24, fontWeight: 'bold',
+        fontStyle: 'italic'
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProposalInfo);

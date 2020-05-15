@@ -2,162 +2,122 @@ export const COMMENTS =
 [
     {
         id: 0,
-        campsiteId: 0,
-        rating: 5, 
-        text: "What a magnificent view!",
-        author: "Tinus Lorvaldes",
-        date: "2018-10-25T16:30Z"
-    },
-    {
+        proposalId: 0,
+        rating: 2,
+        text: "I want to make the walls lighter",
+        author: "John Waters",
+        date: "2020-03-25T16:30Z"
+      },
+      {
         id: 1,
-        campsiteId: 0,
-        rating: 4, 
-        text: "The campground was beautiful, but the bugs could bite sometimes.",
-        author: "Brennen Ech",
-        date: "2017-06-17T03:33Z"
-    },
-    {
+        proposalId: 0,
+        rating: 2,
+        text: "I'm not sure if its a good idea to remove the chimney.",
+        author: "John Waters",
+        date: "2020-03-17T03:33Z"
+      },
+      {
         id: 2,
-        campsiteId: 0,
-        rating: 5, 
-        text: "I caught a world-record-breaking trout here on my last visit.",
-        author: "McKenzie Sebastian",
-        date: "2019-02-18T18:12Z"
-    },
-    {
+        proposalId: 0,
+        rating: 3,
+        text: "I think I want to replace the sofa with the ashley furniture's Bently collection",
+        author: "John Waters",
+        date: "2020-03-18T18:12Z"
+      },
+      {
         id: 3,
-        campsiteId: 0,
-        rating: 5, 
-        text: "A wonderful place to reconnect with nature.",
-        author: "Jordan Runn",
-        date: "2019-08-04T20:11Z"
-    },
-    {
+        proposalId: 0,
+        rating: 5,
+        text: "I wanted to add some more plants.",
+        author: "John Waters",
+        date: "2020-04-04T20:11Z"
+      },
+      {
         id: 4,
-        campsiteId: 0,
-        rating: 4, 
-        text: "The stars at night were a revelation!",
-        author: "Ann Dabramov",
-        date: "2018-07-23T19:44Z"
-    },
-    {
+        proposalId: 0,
+        rating: 5,
+        text: "Great job! I'm gonna approve this Design now. Thank you!",
+        author: "John Waters",
+        date: "2020-04-25T19:44Z"
+      },
+      {
         id: 5,
-        campsiteId: 1,
-        rating: 4, 
-        text: "The campground was beautiful, but the bugs could bite sometimes.",
-        author: "Brennen Ech",
-        date: "2017-06-17T03:33Z"
-    },
-    {
+        proposalId: 1,
+        rating: 2,
+        text: "The ceilings seems plain for me, I would go for wood accents",
+       author: "John Waters",
+        date: "2020-04-17T03:33Z"
+      },
+      {
         id: 6,
-        campsiteId: 1,
-        rating: 5, 
-        text: "I caught a world-record-breaking trout here on my last visit.",
-        author: "McKenzie Sebastian",
-        date: "2019-02-18T18:12Z"
-    },
-    {
+        proposalId: 1,
+        rating: 3,
+        text: "I think I like the ceiliing to be a little lighter in color",
+       author: "John Waters",
+        date: "2020-04-18T18:12Z"
+      },
+      {
         id: 7,
-        campsiteId: 1,
-        rating: 5, 
-        text: "A wonderful place to reconnect with nature.",
-        author: "Jordan Runn",
-        date: "2019-08-04T20:11Z"
-    },
-    {
+        proposalId: 1,
+        rating: 5,
+        text: "Perfect! My wife would love this!",
+       author: "John Waters",
+        date: "2020-04-24T20:11Z"
+      },
+      {
         id: 8,
-        campsiteId: 1,
-        rating: 4, 
-        text: "The stars at night were a revelation!",
-        author: "Ann Dabramov",
-        date: "2018-07-23T19:44Z"
-    },
-    {
+        proposalId: 2,
+        rating: 4,
+        text: "What about making the cabinets wood-like, I want to get rid of the white cabinets",
+       author: "John Waters",
+        date: "2020-04-23T19:44Z"
+      },
+      {
         id: 9,
-        campsiteId: 1,
-        rating: 5, 
-        text: "What a magnificent view!",
-        author: "Tinus Lorvaldes",
-        date: "2018-10-25T16:30Z"
-    },
-    {
+        proposalId: 2,
+        rating: 4,
+        text: "I think I want the countertops to be black?",
+       author: "John Waters",
+        date: "2020-05-01T16:30Z"
+      },
+      {
         id: 10,
-        campsiteId: 2,
-        rating: 5, 
-        text: "I caught a world-record-breaking trout here on my last visit.",
-        author: "McKenzie Sebastian",
-        date: "2019-02-18T18:12Z"
-    },
-    {
+        proposalId: 2,
+        rating: 4,
+        text: "Can we make the accent light a little smaller, I want the Kislap variant from Ashley's",
+       author: "John Waters",
+        date: "2020-05-02T18:12Z"
+      },
+      {
         id: 11,
-        campsiteId: 2,
-        rating: 5, 
-        text: "A wonderful place to reconnect with nature.",
-        author: "Jordan Runn",
-        date: "2019-08-04T20:11Z"
-    },
-    {
+        proposalId: 2,
+        rating: 5,
+        text: "Stunning! Approved!.",
+       author: "John Waters",
+        date: "2020-05-04T20:11Z"
+      },
+      {
         id: 12,
-        campsiteId: 2,
-        rating: 4, 
-        text: "The stars at night were a revelation!",
-        author: "Ann Dabramov",
-        date: "2018-07-23T19:44Z"
-    },
-    {
+        proposalId: 3,
+        rating: 4,
+        text: "Can we pick up an 8 seater dining sets?",
+       author: "John Waters",
+        date: "2020-05-05T19:44Z"
+      },
+      {
         id: 13,
-        campsiteId: 2,
-        rating: 5, 
-        text: "What a magnificent view!",
-        author: "Tinus Lorvaldes",
-        date: "2018-10-25T16:30Z"
-    },
-    {
+        proposalId: 3,
+        rating: 4,
+        text: "I like the rugs, can we change it to bigger size?",
+       author: "John Waters",
+        date: "2020-05-10T16:30Z"
+      },
+      {
         id: 14,
-        campsiteId: 2,
-        rating: 4, 
-        text: "The campground was beautiful, but the bugs could bite sometimes.",
-        author: "Brennen Ech",
-        date: "2017-06-17T03:33Z"
-    },
-    {
-        id: 15,
-        campsiteId: 3,
-        rating: 5, 
-        text: "A wonderful place to reconnect with nature.",
-        author: "Jordan Runn",
-        date: "2019-08-04T20:11Z"
-    },
-    {
-        id: 16,
-        campsiteId: 3,
-        rating: 4, 
-        text: "The stars at night were a revelation!",
-        author: "Ann Dabramov",
-        date: "2018-07-23T19:44Z"
-    },
-    {
-        id: 17,
-        campsiteId: 3,
-        rating: 5, 
-        text: "What a magnificent view!",
-        author: "Tinus Lorvaldes",
-        date: "2018-10-25T16:30Z"
-    },
-    {
-        id: 18,
-        campsiteId: 3,
-        rating: 4, 
-        text: "The campground was beautiful, but the bugs could bite sometimes.",
-        author: "Brennen Ech",
-        date: "2017-06-17T03:33Z"
-    },
-    {
-        id: 19,
-        campsiteId: 3,
-        rating: 5, 
-        text: "I caught a world-record-breaking trout here on my last visit.",
-        author: "McKenzie Sebastian",
-        date: "2019-02-18T18:12Z"
-    }
+        proposalId: 3,
+        rating: 5,
+        text: "My daughter really loves it!",
+       author: "John Waters",
+        date: "2020-05-14T03:33Z"
+      }
 ]

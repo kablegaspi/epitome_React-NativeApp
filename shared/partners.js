@@ -1,30 +1,35 @@
 export const PARTNERS = [
     {
         id: 0,
-        name: "Bootstrap Outfitters",
-        image: "/assets/images/bootstrap-logo.png",
+        name: "Ashley Furniture Homestore",
+        image: "photos/ashleylogo.png",
+        title: "Featured Partner",
         featured: false,
-        description: "Bootstrap Outfitters supplies you with the gear you need at prices you can't beat."
-    },
-    {
+        description: " Going on a mission to make the world feel a little more like home."
+  
+      },
+      {
         id: 1,
-        name: "Git Out Expeditions",
-        image: "/assets/images/git-logo.png",
+        name: "CITY Furniture",
+        image: "photos/citylogo.png",
+        title: "Featured Partner",
         featured: false,
-        description: "Join Git Out Expeditions to explore new horizons with a group of other adventurers!"
-    },
-    {
+        description: "High Quality Furniture at an Exceptional Value."
+      },
+      {
         id: 2,
-        name: "Mongo Fly Shop",
-        image: "/assets/images/mongo-logo.png",
-        featured: false,
-        description: "Need a new fishing pole, a tacklebox, or flies of all kinds? Stop by Mongo Fly Shop."
-    },
-    {
-        id: 3,
-        name: "Node Outdoor Apparel",
-        image: "/assets/images/node-logo.png",
+        name: "Rooms To Go",
+        title: "Featured Partner",
+        image: "photos/roomstogo.png",
         featured: true,
-        description: "From polar fleeces to swimsuits, hiking boots to waders, a visit to Node will be sure to get you covered."
-    }
+        description: " State of the art pieces without breaking the bank. "
+      },
+      {
+        id: 3,
+        name: "American Signature Furniture ",
+        image: "photos/aslogo.jpg",
+        title: "Featured Partner",
+        featured: false,
+        description: "You deserve a place that you can call home, a place that reflects YOU that is furnished the way you like it; without having to break the bank.."
+      }
 ]

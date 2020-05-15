@@ -5,46 +5,46 @@ import { connect } from 'react-redux';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import Swipeout from 'react-native-swipeout';
-import { deleteFavorite } from '../redux/ActionCreators';
+import { deleteFinal } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
         proposals: state.proposals,
-        favorites: state.favorites
+        finals: state.finals
     };
 };
 
-const mapDispatchToProps = {    deleteFavorite: campsiteId => (deleteFavorite(campsiteId))};
+const mapDispatchToProps = {    deleteFinal: proposalId => (deleteFinal(proposalId))};
 
 
 
-class Favorites extends Component {
+class Finals extends Component {
 
     static navigationOptions = {
-        title: 'My Favorites'
+        title: 'Approved Designs'
     }
 
     render() {
         const { navigate } = this.props.navigation;
-        const renderFavoriteItem = ({item}) => {
+        const renderFinalItem = ({item}) => {
             const rightButton = [
                 {
                     text: 'Delete', 
                     type: 'delete',
                     onPress: () => {
                         Alert.alert(
-                            'Delete Favorite?',
-                            'Are you sure you wish to delete the favorite campsite ' + item.name + '?',
+                            'Delete?',
+                            'Are you sure you wish to remove the approved design for ' + item.name + '?',
                             [
                                 { 
                                     text: 'Cancel', 
-                                    onPress: () => console.log(item.name + 'Not Deleted'),
+                                    onPress: () => console.log(item.name + ' Not Deleted'),
                                     style: ' cancel'
                                 },
                                 {
                                     text: 'OK',
-                                    onPress: () => this.props.deleteFavorite(item.id)
+                                    onPress: () => this.props.deleteFinal(item.id)
                                 }
                             ],
                             { cancelable: false }
@@ -60,7 +60,7 @@ class Favorites extends Component {
                         title={item.name}
                         subtitle={item.description}
                         leftAvatar={{source: {uri: baseUrl + item.image}}}
-                        onPress={() => navigate('CampsiteInfo', {campsiteId: item.id})}
+                        onPress={() => navigate('ProposalInfo', {proposalId: item.id})}
                         />
                     </Animatable.View>
                 </Swipeout>
@@ -80,13 +80,13 @@ class Favorites extends Component {
         return (
             <FlatList
                 data={this.props.proposals.proposals.filter(
-                    campsite => this.props.favorites.includes(campsite.id)
+                    proposal => this.props.finals.includes(proposal.id)
                 )}
-                renderItem={renderFavoriteItem}
+                renderItem={renderFinalItem}
                 keyExtractor={item => item.id.toString()}
             />
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Finals);
