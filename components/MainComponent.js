@@ -6,13 +6,14 @@ import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
 import Finals from './FinalsComponent';
 import ProposalInfo from './ProposalInfoComponent';
-import { View, Platform, StyleSheet, Text, ScrollView, Image  } from 'react-native';
+import { View, Platform, StyleSheet, Text, ScrollView, Image, Alert  } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { fetchProposals, fetchComments, fetchIdeas,
     fetchPartners } from '../redux/ActionCreators';
+    import Login from './LoginComponent';
 
 
     
@@ -189,14 +190,44 @@ const CustomDrawerContentComponent = props => (
                     <Text style={styles.drawerHeaderText}>Designs</Text>
                 </View>
             </View>
-            <DrawerItems {...props} />
+            <DrawerItems {...props} activeTintColor='#FFCA26' activeBackgroundColor='rgba(0, 0, 0, .04)' inactiveTintColor='rgba(0, 0, 0, .87)' inactiveBackgroundColor='transparent' style={{backgroundColor: '#000000'}} labelStyle={{color: '#000000'}}/>
         </SafeAreaView>
     </ScrollView>
 );
 
+const LoginNavigator = createStackNavigator(
+    
+    {
+        Login: { 
+            screen: Login }
+    },
+    {
+        navigationOptions: ({navigation}) => ({
+            
+            headerStyle: {
+                backgroundColor: '#FFCA26'
+            },
+            headerTintColor: '#000000',
+            headerTitleStyle: {
+                color: '#000000'
+            },
+            headerLeft: <Icon
+                name='sign-in'
+                type='font-awesome'
+                
+                iconStyle={styles.stackIcon}
+                
+            />
+        })
+    }
+);
+
 
 const MainNavigator = createDrawerNavigator(
+    
     {
+        
+       
         Home: {
             screen: HomeNavigator,
             navigationOptions: {
@@ -208,7 +239,11 @@ const MainNavigator = createDrawerNavigator(
                         color={tintColor}
                     />
                 )
+            
+                
             }
+            
+            
         },
         Proposal: {
             screen: DirectoryNavigator,
@@ -282,9 +317,49 @@ const MainNavigator = createDrawerNavigator(
                     />
                 )
             }
+        },
+        Logout: {
+            
+          
+            screen: LoginNavigator,
+            navigationOptions: {
+                drawerIcon: ({tintColor}) => (
+                    <Icon
+                        name='sign-in'
+                        type='font-awesome'
+                        size={24}
+                        color={tintColor}
+                       // onPress={() => navigation.toggleDrawer()}
+                        // onPress={() => 
+                        //     Alert.alert(
+                        //         'Delete?',
+                        //         'Are you sure you wish to logout?',
+                        //         [
+                        //             { 
+                        //                 text: 'Cancel', 
+                        //                 //onPress: () => console.log(item.name + ' Not Deleted'),
+                        //                 style: ' cancel'
+                        //             },
+                        //             {
+                        //                 text: 'OK',
+                        //                 onPress: () => navigate('login')
+                                        
+                        //             }
+                        //         ],
+                        //         { cancelable: false }
+                        //     )
+                        // }
+                        
+                    />
+                )
+            },
+            
         }
     },
+    
     {
+        
+        initialRouteName: 'Logout',
         drawerBackgroundColor: '#FFFFFF',
         contentComponent: CustomDrawerContentComponent
     }

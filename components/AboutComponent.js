@@ -131,7 +131,7 @@ class About extends Component {
                     <Animatable.View animation='fadeInDown' duration={2000} delay={1000}>
                         <Mission />
                         <Card
-                            title="OUR PRTNERS">
+                            title="OUR PARTNERS">
                             <Text>{this.props.partners.errMess}</Text>
                         </Card>
                     </Animatable.View>

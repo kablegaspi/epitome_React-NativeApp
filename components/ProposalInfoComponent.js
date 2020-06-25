@@ -17,6 +17,13 @@ const mapStateToProps = state => {
     };
 };
 
+const users = [
+        {
+        name: '  Kyiel Legaspi',
+        avatar: require('./photos/kyiel.jpg')
+     }
+   ];
+
 const mapDispatchToProps = {
     postFinal: proposalId => (postFinal(proposalId)),
     postComment: (proposalId, rating, author, text) => (postComment(proposalId, rating, author, text))
@@ -35,7 +42,7 @@ function RenderRequirements() {
     
             return (
                 <View>
-                <Card title="REQUIREMENT(S)">
+                <Card title="Requirement(s)">
                     {
                     requirements.map((u, i) => {
                     return (
@@ -79,6 +86,36 @@ function RenderRequirements() {
                             
                         </View>
                         
+                    );
+                    })
+                }
+                </Card>
+                <Card title="Interior Designer">
+                    {
+                    users.map((u, i) => {
+                    return (
+                        <View key={i} style={{tintColor: "#000000", 
+                        flexDirection: 'row', height: 50}}
+                        >
+                           <Image
+                            style={{
+                               resizeMode: "contain",
+                                height: 40,
+                                width: 40,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                               
+                              }}
+                            resizeMode="cover"
+                            source={u.avatar} 
+                        />
+                            
+                        <Text style={{fontSize: 18,
+                            fontWeight: 'bold', alignItems: 'center',
+                            justifyContent: 'center'}}> 
+                                {u.name}
+                        </Text>
+                        </View>
                     );
                     })
                 }
@@ -171,7 +208,7 @@ function RenderComments({comments}) {
 
     return (
         <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
-            <Card title='Comments'>
+            <Card title='Revision(s) / Request(s)'>
                 <FlatList
                     data={comments}
                     renderItem={renderCommentItem}
